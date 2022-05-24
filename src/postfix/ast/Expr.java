@@ -47,7 +47,7 @@ public abstract class Expr {
 
 	// Binop expression
 	public static class Binop extends Expr {
-		public Binop(Expr left, Expr right, Token operator) {
+		public Binop(Expr right, Expr left,  Token operator) {
 			this.left = left;
 			this.right = right;
 			this.operator = operator;
