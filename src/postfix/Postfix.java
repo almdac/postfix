@@ -34,6 +34,7 @@ import postfix.lexer.Scanner;
 import postfix.lexer.Token;
 import postfix.parser.Parser;
 import postfix.parser.ParserError;
+import postfix.interpreter.UnresolvedVariableError;
 
 /**
  * @author Henrique Rebelo
@@ -130,7 +131,11 @@ public class Postfix {
 		catch (ParserError e) {
 			error("Parser", e.getMessage());
 			hasError = true;
-		}	
+		}
+		catch (UnresolvedVariableError e) {
+			error("Interpreter", e.getMessage());
+			hasError = true;
+		} 
 	}
 
 	// -------------------------------------------------------------

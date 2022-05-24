@@ -43,7 +43,11 @@ public class Interpreter implements Expr.Visitor<Integer> {
 
 	@Override
 	public Integer visitIdExpr(Expr.Id expr) {
-		return Integer.parseInt(this.env.get(expr.value));
+		try{
+			return Integer.parseInt(this.env.get(expr.value));
+		} catch (Exception e) {
+			throw new UnresolvedVariableError(expr.value + " cannot be resolved");
+		}
 	}
 
 	@Override
