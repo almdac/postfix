@@ -22,6 +22,8 @@ package postfix.lexer;
 public class Regex {
 	// regex for literals recognition
 	private static final String NUM_REGEX = "(\\d)+"; // short for [0-9]
+	// regex for identifiers recognition
+	private static final String ID_REGEX = "([a-zA-Z]\\w*)";
 	// regex for single-character operation recognition.
 	private static final String OP_REGEX = "(\\+|-|\\*|/)"; // recognizes as an operation
 	private static final String PLUS_REGEX = "(\\+)"; // for plus operation recognition
@@ -31,6 +33,10 @@ public class Regex {
 	
 	public static boolean isNum(String token) {
 		return token.matches(NUM_REGEX);
+	}
+
+	public static boolean isId(String token) {
+		return token.matches(ID_REGEX);
 	}
 	
 	public static boolean isOP(String token) {

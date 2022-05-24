@@ -71,6 +71,9 @@ public class Scanner {
 		if(Regex.isNum(token)) {
 			ret = new Token(TokenType.NUM, token);
 		}
+		else if(Regex.isId(token)) {
+			ret = new Token(TokenType.ID, token);
+		}
 		else if(Regex.isOP(token)) {
 			ret = new Token(Regex.getOPTokenType(token), token);
 		}

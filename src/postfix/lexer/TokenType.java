@@ -24,6 +24,9 @@ public enum TokenType {
 	// Literals.
 	NUM,
 
+	// Identifiers.
+	ID,
+
 	// Single-character tokens for operations.
 	MINUS, PLUS, SLASH, STAR,
 	

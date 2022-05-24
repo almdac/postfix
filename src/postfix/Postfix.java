@@ -23,6 +23,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import postfix.ast.AstPrinter;
 import postfix.ast.Expr;
@@ -38,7 +40,7 @@ import postfix.parser.ParserError;
  */
 public class Postfix {
 
-	private static final Interpreter interpreter = new Interpreter();
+	private static final Interpreter interpreter = new Interpreter(new HashMap<String, String>());
 	private static boolean hasError = false;
 	private static boolean debugging = false;
 
@@ -53,7 +55,7 @@ public class Postfix {
 //		args [0] = "../StackerPrograms/program/Calc1.stk";
 //		args [1] = "../StackerPrograms/program/Calc2.stk";
 
-		debugging = false; // for interpretation phases
+		debugging = true; // for interpretation phases
 		run(args, debugging);
 	}
 
@@ -114,6 +116,12 @@ public class Postfix {
 			if(debugging) {
 				printAST(expr);
 			}
+
+			Map<String, String> env = System.getenv();
+			for (String envName : env.keySet()) {
+				interpreter.env.put(envName, env.get(envName));
+			}
+
 			System.out.println(interpreter.interp(expr));
 		} catch (LexError e) {
 			error("Lex", e.getMessage());

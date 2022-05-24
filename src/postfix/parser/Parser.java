@@ -54,6 +54,9 @@ public class Parser {
 			if(this.match(TokenType.NUM)) {
 				this.stack.push(this.number());
 			}
+			if(this.match(TokenType.ID)) {
+				this.stack.push(this.id());
+			}
 			// matching any of the operation tokens
 			else if(this.match(TokenType.PLUS, TokenType.MINUS, 
 					TokenType.SLASH, TokenType.STAR)) {
@@ -66,6 +69,10 @@ public class Parser {
 
 	private Expr number() {
 		return new Expr.Number(peek().lexeme);
+	}
+
+	private Expr id() {
+		return new Expr.Id(peek().lexeme);
 	}
 
 	private Expr binop() {
